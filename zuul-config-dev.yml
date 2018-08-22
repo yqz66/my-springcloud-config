@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: zuul
+zuul:
+  routes:
+    consumer:
+      id: consumer
+      path: /consumer/** #拦截路径，
+      serviceId: consumer-dept
+  max:
+    host:
+      connections: 500
+  host:
+    socket-timeout-millis: 3000  # 单位（微秒）链接超时
+    connect-timeout-millis: 1000
+  ignored-services: "*" #忽略所有以微服务名称的路径访问 所有微服务访问必须配置 routes 才能通过网关访问
+info:
+  app.name: my-spring-cloud
+  company.name: 时光
+  build.artifactId: ${project.artifactId} #通过插件从 maven 配置中获取值(测试因为Spring cloud 版本问题，有些版本兼容，有些版本是无法获取的)
+  build.version: $project.version$
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 # 设置 hystrix 链接超时
