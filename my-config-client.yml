@@ -11,3 +11,4 @@ eureka:
 info:
   my:
     name: 时光
+    message: 测试局部刷新机制
